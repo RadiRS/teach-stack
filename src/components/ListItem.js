@@ -6,6 +6,17 @@ import * as actions from "../actions";
 
 //create listitem component
 class ListItem extends Component {
+  //render description if id of library same with id selected library
+  renderDescription() {
+    //destruct
+    const { library, selectedLibraryId } = this.props;
+    if (library.id === selectedLibraryId) {
+      return (
+        <Text>{library.description}</Text>
+      )
+    }
+  }
+
   render() {
     //destruct
     const { titleStyle } = styles;
@@ -18,6 +29,7 @@ class ListItem extends Component {
           <CardSection>
             <Text style={titleStyle}>{title}</Text>
           </CardSection>
+          {this.renderDescription()}
         </View>
       </TouchableWithoutFeedback>
     );
@@ -32,8 +44,10 @@ const styles = {
   }
 };
 
+//get data state object and set to props
+const mapStateToProps = state => {
+  return { selectedLibraryId: state.selectedLibraryId };
+};
+
 //return all action from actions and dispatch the action and pass to props in listitem
-export default connect(
-  null,
-  actions
-)(ListItem);
+export default connect(mapStateToProps,actions)(ListItem);

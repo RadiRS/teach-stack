@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import LibraryReducer from "./LibraryReducer";
 import SelectionReducer from "./SelectionReducer";
 
-//combine all reducer and return into libraries
+//combine all reducer and return to global state to will be access
 export default combineReducers({
   libraries: LibraryReducer,
-  seletedLibraryID: SelectionReducer
+  selectedLibraryId: SelectionReducer
 });
