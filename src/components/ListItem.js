@@ -7,15 +7,13 @@ import * as actions from "../actions";
 //create listitem component
 class ListItem extends Component {
   render() {
-    //destruct 
+    //destruct
     const { titleStyle } = styles;
     const { id, title } = this.props.library;
-    
+
     //return component cardsection, text and get value of the props
     return (
-      <TouchableWithoutFeedback
-        onPress={() => this.props.selectLibrary(id)}
-      >
+      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
         <View>
           <CardSection>
             <Text style={titleStyle}>{title}</Text>
