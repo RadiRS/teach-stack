@@ -1,19 +1,31 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Text, TouchableWithoutFeedback, View } from "react-native";
-import { CardSection } from "./common";
-import * as actions from "../actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  LayoutAnimation
+} from 'react-native';
+import { CardSection } from './common';
+import * as actions from '../actions';
 
 //create listitem component
 class ListItem extends Component {
+  //lifecycle method
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
   //render description if id of library same with id selected library
   renderDescription() {
     //destruct
     const { library, expanded } = this.props;
     if (expanded) {
       return (
-        <Text>{library.description}</Text>
-      )
+        <CardSection>
+          <Text style={{ flex: 1 }}>{library.description}</Text>
+        </CardSection>
+      );
     }
   }
 
@@ -52,4 +64,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 //return all action from actions and dispatch the action and pass to props in listitem
-export default connect(mapStateToProps,actions)(ListItem);
+export default connect(
+  mapStateToProps,
+  actions
+)(ListItem);
