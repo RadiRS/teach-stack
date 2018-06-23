@@ -9,8 +9,8 @@ class ListItem extends Component {
   //render description if id of library same with id selected library
   renderDescription() {
     //destruct
-    const { library, selectedLibraryId } = this.props;
-    if (library.id === selectedLibraryId) {
+    const { library, expanded } = this.props;
+    if (expanded) {
       return (
         <Text>{library.description}</Text>
       )
@@ -45,8 +45,10 @@ const styles = {
 };
 
 //get data state object and set to props
-const mapStateToProps = state => {
-  return { selectedLibraryId: state.selectedLibraryId };
+const mapStateToProps = (state, ownProps) => {
+  const expanded = state.selectedLibraryId === ownProps.library.id;
+
+  return { expanded };
 };
 
 //return all action from actions and dispatch the action and pass to props in listitem
